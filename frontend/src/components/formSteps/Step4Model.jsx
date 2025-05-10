@@ -13,13 +13,14 @@ const Step4Model = ({ data, setData }) => {
   const [models, setModels] = useState([]);
   const [loading, setLoading] = useState(false);
 
+
   useEffect(() => {
     const fetchModels = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(
-          `http://localhost:5000/vehicles?typeId=${data.vehicleTypeId}`
-        );
+        console.log('Fetching models with typeId:', data.vehicleTypeId);  // Log typeId before making request
+        const res = await axios.get(`http://localhost:5000/api/vehicles?typeId=${data.vehicleTypeId}`);
+        console.log('Response data:', res.data);  
         setModels(res.data);
       } catch (err) {
         console.error("Error fetching vehicle models:", err);
@@ -27,12 +28,12 @@ const Step4Model = ({ data, setData }) => {
         setLoading(false);
       }
     };
-
+  
     if (data.vehicleTypeId) {
       fetchModels();
     }
   }, [data.vehicleTypeId]);
-
+  
   if (loading) return <CircularProgress />;
 
   return (

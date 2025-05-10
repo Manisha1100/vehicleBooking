@@ -1,8 +1,7 @@
 import { DatePicker } from "@mui/x-date-pickers";
 import { TextField, Box } from "@mui/material";
-import dayjs from "dayjs";
 
-const Step5Dates = ({ formData, setFormData }) => {
+const Step5Dates = ({ formData = {}, setFormData }) => {
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <DatePicker
