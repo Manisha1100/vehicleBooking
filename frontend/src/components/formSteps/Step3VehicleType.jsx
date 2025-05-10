@@ -20,7 +20,7 @@ const Step3VehicleType = ({ data, setData }) => {
       setLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:5000/vehicle-types?wheels=${wheels}`
+          `http://localhost:5000/api/vehicle-types?wheels=${wheels}`
         );
         setTypes(res.data);
       } catch (err) {
@@ -44,10 +44,11 @@ const Step3VehicleType = ({ data, setData }) => {
       </Typography>
 
       <RadioGroup
-        value={data.vehicleTypeId}
-        onChange={(e) =>
-          setData((prev) => ({ ...prev, vehicleTypeId: e.target.value }))
-        }
+        value={data.vehicleTypeId || ""} // Ensure the value is either vehicleTypeId or an empty string
+        onChange={(e) => {
+          console.log("Selected Vehicle Type ID:", e.target.value); // Add this to check if it’s updating
+          setData((prev) => ({ ...prev, vehicleTypeId: e.target.value }));
+        }}
       >
         {types.map((type) => (
           <FormControlLabel

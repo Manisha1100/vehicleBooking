@@ -3,6 +3,6 @@ const router = express.Router();
 const { getVehicleTypes, getVehiclesByType } = require('../controllers/vehicleController');
 
 router.get('/vehicle-types', getVehicleTypes);
-router.get('/vehicles/:typeId', getVehiclesByType);
+router.get('/vehicles', getVehiclesByType);
 
 module.exports = router;

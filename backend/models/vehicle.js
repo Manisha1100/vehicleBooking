@@ -3,7 +3,6 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Vehicle extends Model {
     static associate(models) {
-      // A Vehicle belongs to one VehicleType
       Vehicle.belongsTo(models.VehicleType, { foreignKey: 'vehicleTypeId' });
       Vehicle.hasMany(models.Booking, { foreignKey: 'vehicleId' });
     }
